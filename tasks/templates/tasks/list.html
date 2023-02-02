@@ -1,0 +1,20 @@
+<!-- tasks/list.html -->
+
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+	<div class="content-section col-md-8">
+	<h3>List: {{ list_item.name }}</h3>
+	Tasks:
+	<ul>
+	{% for task in list_tasks %}
+		<li> 
+			<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{ task.priority }}{% if task.user_date %}, {{ task.user_date }}{% endif %}, {{ task.date_added }})</li>
+	{% empty %}
+		There are no tasks in this list yet.
+    {% endfor %}
+	</ul>
+</div>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+<!-- new_list.html -->
+
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<p>Add a list:</p>
+<form method="POST">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Add List</button>
+</form>
+
+{% endblock %}

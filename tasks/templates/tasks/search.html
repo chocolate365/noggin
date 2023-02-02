@@ -1,0 +1,16 @@
+<!-- tasks/search.html -->
+
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+	<form action="">
+		<div class="mb-3">
+			<input type="text" name="searchNoggin" class="form-control" />
+		</div>
+		<button type="submit" class="btn btn-primary">Search</button>
+	</form>
+	<p>Searching for {{ searchTerm }}</p>
+	
+
+{% endblock %}

@@ -1,0 +1,27 @@
+<!-- tasks/list.html -->
+
+{% extends 'tasks/base.html' %}
+
+{% block content %}
+
+<div class="content-section">
+	<h3>Task: {{ task.name }}</h3>
+	Lists:
+<ul>
+
+	{% for list in task_lists %}
+		<li><a href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
+	{% empty %}
+		There are no tasks in this list yet.
+	{% endfor %}
+</ul>
+
+<p>Priority: {{ task.priority }}</p>
+<p>User date: {{ task.user_date }}</p>
+<p>Notes: {{ task.notes }}</p>
+
+<a class="btn btn-primary me-2" href="{% url 'tasks-updatetask' task.id %}">Edit</a>
+<a class="btn btn-primary me-2" href="{% url 'tasks-deletetask' task.id %}">Delete</a>
+</div>
+
+{% endblock %}

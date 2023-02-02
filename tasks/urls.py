@@ -1,0 +1,16 @@
+# tasks/urls.py
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='tasks-home'),
+    path('list/<int:list_id>/', views.list, name='tasks-list'),
+    path('task/<int:task_id>/', views.task, name='tasks-task'),
+    path('task/<int:task_id>/update/', views.updatetask, name='tasks-updatetask'),
+    path('task/<int:task_id>/delete/', views.deletetask, name='tasks-deletetask'),
+    path('new_task/', views.new_task, name='new-task'),
+    path('new_list/', views.new_list, name='new-list'),
+    path('about/', views.about, name='tasks-about'),
+    path('search/', views.search, name='tasks-search'),
+]
