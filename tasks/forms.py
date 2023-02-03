@@ -31,4 +31,8 @@ class ListForm(forms.ModelForm):
 	class Meta:
 		model = List
 		fields = ('name', 'display_order')
+
+	def __init__(self, user, *args, **kwargs):
+		super(ListForm, self).__init__(*args, **kwargs)
+		#self.fields['tasks'].queryset = Task.objects.filter(owner=user)
 		

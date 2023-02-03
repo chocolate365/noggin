@@ -52,7 +52,7 @@ def task(request, task_id):
 @login_required
 def new_list(request):
 	if request.method == 'POST':
-		form = ListForm(data=request.POST)
+		form = ListForm(request.user, request.POST)
 		if form.is_valid():
 			to_save = form.save(commit=False)
 			to_save.owner = request.user
@@ -62,7 +62,7 @@ def new_list(request):
 	#lists = List.objects.filter(owner=request.user)
 
 	#context = {"form": form, "lists": lists}
-	form = ListForm()
+	form = ListForm(request.user)
 	tasks = Task.objects.filter(owner=request.user)
 	lists = List.objects.filter(owner=request.user)
 	context = {"form": form, 'tasks': tasks, 'lists': lists}
@@ -134,3 +134,41 @@ def deletetask(request, task_id):
 	task = get_object_or_404(Task, pk=task_id, owner=request.user)
 	task.delete()
 	return redirect('/')
+
+
+
+
+
+
+
+@login_required
+def updatelist(request, list_id):
+	list = get_object_or_404(List, pk=list_id, owner=request.user)
+	#task = Task.objects.get(id=task_id)
+	#if task.owner != request.user:
+	#	return redirect('/')
+	if request.method == "GET":
+		form = ListForm(request.user, instance=list)
+		return render(request, 'tasks/updatelist.html', {'list': list, 'form': form})
+	else:
+		try:
+			form = ListForm(request.user, request.POST, instance=list)
+			#form = ListForm(request.POST, instance=list)
+			form.save()
+			return redirect('/')
+		except ValueError:
+			return render(request, 'tasks/updatelist.html', {'list': list, 'form': form, 'error': 'Bad data in form'})
+
+	form = ListForm(request.user, instance=list)
+	lists = List.objects.filter(owner=request.user)
+	tasks = Task.objects.filter(owner=request.user)
+	context = {'form': form, 'lists': lists, 'tasks': tasks}
+	return render(request, 'tasks/list.html', context)
+
+
+@login_required
+def deletelist(request, list_id):
+	task = get_object_or_404(List, pk=list_id, owner=request.user)
+	task.delete()
+	return redirect('/')
+

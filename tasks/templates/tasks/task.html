@@ -1,4 +1,4 @@
-<!-- tasks/list.html -->
+<!-- tasks/task.html -->
 
 {% extends 'tasks/base.html' %}
 
@@ -12,7 +12,7 @@
 	{% for list in task_lists %}
 		<li><a href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
 	{% empty %}
-		There are no tasks in this list yet.
+		This task has not been added to any lists yet.
 	{% endfor %}
 </ul>
 

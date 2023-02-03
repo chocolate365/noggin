@@ -15,6 +15,9 @@
 		There are no tasks in this list yet.
     {% endfor %}
 	</ul>
+
+	<a class="btn btn-primary me-2" href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
+	<a class="btn btn-primary me-2" href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
 </div>
 
 {% endblock %}

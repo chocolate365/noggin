@@ -75,7 +75,7 @@
 
 					<ul class="list-group">
 
-						<li class="list-group-item list-group-item-light"><a href="{% url 'new-task' %}">Add a task</a></li>
+						<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2" href="{% url 'new-task' %}">Add a task</a></li>
 
 						{% for task in tasks %}
 						<li class="list-group-item list-group-item-light">
@@ -95,7 +95,7 @@
 
 						<ul class="list-group">
 
-							<li class="list-group-item list-group-item-light"><a href="{% url 'new-list' %}">Add a list</a></li>
+							<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2" href="{% url 'new-list' %}">Add a list</a></li>
 
 							{% for list in lists %}
 							<li class="list-group-item list-group-item-light">
