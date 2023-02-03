@@ -1,6 +1,6 @@
 <!-- new_task.html -->
 
-{% extends 'tasks/base.html' %}
+{% extends 'tasks/base2.html' %}
 
 {% block content %}
 
@@ -8,7 +8,7 @@
 <form method="POST">
 	{% csrf_token %}
 	{{ form.as_p }}
-	<button type="submit">Add Task</button>
+	<button class="btn btn-primary me-2" type="submit">Add Task</button>
 </form>
 
 {% endblock %}

@@ -63,9 +63,10 @@ def new_list(request):
 
 	#context = {"form": form, "lists": lists}
 	form = ListForm(request.user)
-	tasks = Task.objects.filter(owner=request.user)
-	lists = List.objects.filter(owner=request.user)
-	context = {"form": form, 'tasks': tasks, 'lists': lists}
+	#tasks = Task.objects.filter(owner=request.user)
+	#lists = List.objects.filter(owner=request.user)
+	#context = {"form": form, 'tasks': tasks, 'lists': lists}
+	context = {"form": form}
 	return render(request, 'tasks/new_list.html', context)
 
 
@@ -77,14 +78,15 @@ def new_task(request):
 			task = form.save(commit=False)
 			task.owner = request.user
 			form.save()
-			return redirect('/')
+			return redirect('tasks-task', task_id=task.id)
+			#return redirect('/')
 
 	form = TaskForm(request.user)
-	tasks = Task.objects.filter(owner=request.user)
-	lists = List.objects.filter(owner=request.user)
+	#tasks = Task.objects.filter(owner=request.user)
+	#lists = List.objects.filter(owner=request.user)
 
-	context = {"form": form, "tasks": tasks, "lists": lists}
-	#context = {"form": form}
+	#context = {"form": form, "tasks": tasks, "lists": lists}
+	context = {"form": form}
 	return render(request, 'tasks/new_task.html', context)
 
 
@@ -123,9 +125,10 @@ def updatetask(request, task_id):
 			return render(request, 'tasks/updatetask.html', {'review': review, 'form': form, 'error': 'Bad date in form'})
 
 	task_lists = task.lists.all()
-	lists = List.objects.all()
-	tasks = Task.objects.all()
-	context = {'task': task, 'task_lists': task_lists, 'lists': lists, 'tasks': tasks}
+	#lists = List.objects.all()
+	#tasks = Task.objects.all()
+	#context = {'task': task, 'task_lists': task_lists, 'lists': lists, 'tasks': tasks}
+	context = {'task': task, 'task_lists': task_lists}
 	return render(request, 'tasks/task.html', context)
 
 
