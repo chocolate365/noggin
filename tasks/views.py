@@ -32,7 +32,7 @@ def list(request, list_id):
 	list_item = List.objects.get(id=list_id)
 	#if list.owner != request.user:
 	#	return redirect('/')
-	list_tasks = list_item.tasks.order_by('priority')
+	list_tasks = list_item.tasks.order_by('priority', '-date_added')
 	context = {'lists': lists, 'tasks': tasks, 'list_item': list_item, 'list_tasks': list_tasks}
 	return render(request, 'tasks/list.html', context)
 
@@ -58,8 +58,7 @@ def new_list(request):
 			to_save.owner = request.user
 			form.save()
 			return redirect('/')
-			#return redirect('tasks-list', list_id=list.id) ** doesn't work
-
+			
 	#lists = List.objects.filter(owner=request.user)
 
 	#context = {"form": form, "lists": lists}
@@ -108,6 +107,7 @@ def search(request):
 	
 	return render(request, 'tasks/search.html', {'searchTerm': searchTerm, 'tasks': tasks, 'lists': lists})
 
+
 @login_required
 def updatetask(request, task_id):
 	task = get_object_or_404(Task, pk=task_id, owner=request.user)
@@ -141,11 +141,6 @@ def deletetask(request, task_id):
 	return redirect('/')
 
 
-
-
-
-
-
 @login_required
 def updatelist(request, list_id):
 	list = get_object_or_404(List, pk=list_id, owner=request.user)
@@ -160,7 +155,8 @@ def updatelist(request, list_id):
 			form = ListForm(request.user, request.POST, instance=list)
 			#form = ListForm(request.POST, instance=list)
 			form.save()
-			return redirect('/')
+			#return redirect('/')
+			return redirect('tasks-list', list_id=list.id)
 		except ValueError:
 			return render(request, 'tasks/updatelist.html', {'list': list, 'form': form, 'error': 'Bad data in form'})
 
