@@ -17,7 +17,7 @@ class List(models.Model):
 class Task(models.Model):
 
 	PRIORITIES = (
-		(1, 'Right now'),
+		(1, 'First thing'),
 		(2, 'ASAP'),
 		(3, 'Soon'),
 		(4, 'Whenever'),

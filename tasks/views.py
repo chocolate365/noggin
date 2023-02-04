@@ -120,7 +120,8 @@ def updatetask(request, task_id):
 		try:
 			form = TaskForm(request.user, request.POST, instance=task)
 			form.save()
-			return redirect('/')
+			return redirect('tasks-task', task_id=task.id)
+			#return redirect('/')
 		except ValueError:
 			return render(request, 'tasks/updatetask.html', {'review': review, 'form': form, 'error': 'Bad date in form'})
 
