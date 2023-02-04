@@ -90,7 +90,7 @@
 
 						{% for task in tasks %}
 						<li class="list-group-item list-group-item-light">
-							<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}}, {{task.date_added}})</li>
+							<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}})</li>
 							{% endfor %}
 
 						</ul>

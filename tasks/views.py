@@ -58,6 +58,7 @@ def new_list(request):
 			to_save.owner = request.user
 			form.save()
 			return redirect('/')
+			#return redirect('tasks-list', list_id=list.id) ** doesn't work
 
 	#lists = List.objects.filter(owner=request.user)
 
