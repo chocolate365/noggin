@@ -80,8 +80,7 @@
 
 						{% for task in tasks %}
 						<li class="list-group-item list-group-item-light">
-							<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}})</li>
-							{% endfor %}
+							<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})</li>{% endfor %}
 
 						</ul>
 
