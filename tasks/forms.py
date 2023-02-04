@@ -6,18 +6,20 @@ class TaskForm(forms.ModelForm):
 
 	class Meta:
 		model = Task
-		fields = ('name', 'lists', 'priority', 'user_date', 'notes')
+		fields = ('name', 'lists', 'priority', 'user_date', 'notes', 'url')
 		labels = {
 		'name': 'What do you want to remember?', 
 		'lists': 'Which lists do you want to add to?', 
 		'priority': 'Priority', 
-		'user_date': 'Would you like to add a date?'
+		'user_date': 'Would you like to add a date?',
+		'url': 'Web site?'
 
 		}
 		widgets = {
 		'lists': forms.CheckboxSelectMultiple, 
 		'priority': forms.RadioSelect, 
-		'user_date': forms.DateInput
+		'user_date': forms.DateInput,
+		'url': forms.URLInput
 		}
 
 

@@ -4,13 +4,16 @@
 
 {% block content %}
 
-	<div class="content-section col-md-8">
+<div class="content-section">
 	<h3>List: {{ list_item.name }}</h3>
 	Tasks:
-	<ul>
+	<ul class="list-group">
+		
 	{% for task in list_tasks %}
-		<li> 
-			<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{ task.priority }}{% if task.user_date %}, {{ task.user_date }}{% endif %}, {{ task.date_added }})</li>
+		<li class="list-group-item list-group-item-light"> 
+			<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{ task.priority }}
+			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
+			{% if task.url %}, {{ task.url }}{% endif %})</li>
 	{% empty %}
 		There are no tasks in this list yet.
     {% endfor %}
