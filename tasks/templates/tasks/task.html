@@ -10,7 +10,7 @@
 <ul>
 
 	{% for list in task_lists %}
-		<li><a href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
+		<li><a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
 	{% empty %}
 		This task has not been added to any lists yet.
 	{% endfor %}

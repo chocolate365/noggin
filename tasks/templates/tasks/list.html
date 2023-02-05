@@ -11,7 +11,7 @@
 		
 	{% for task in list_tasks %}
 		<li class="list-group-item list-group-item-light"> 
-			<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{ task.priority }}
+			<a class="link-secondary" href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{ task.priority }}
 			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
 			{% if task.url %}, {{ task.url }}{% endif %})</li>
 	{% empty %}
