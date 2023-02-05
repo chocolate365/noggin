@@ -19,8 +19,8 @@
     {% endfor %}
 	</ul>
 
-	<a class="btn btn-primary me-2  bg-light text-secondary" href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
-	<a class="btn btn-primary me-2  bg-light text-secondary" href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
+	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
+	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
 </div>
 
 {% endblock %}
