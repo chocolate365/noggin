@@ -15,4 +15,5 @@ urlpatterns = [
     path('new_list/', views.new_list, name='new-list'),
     path('about/', views.about, name='tasks-about'),
     path('search/', views.search, name='tasks-search'),
+    path('priority/', views.priority, name='tasks-priority'),
 ]

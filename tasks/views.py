@@ -173,3 +173,10 @@ def deletelist(request, list_id):
 	task.delete()
 	return redirect('/')
 
+
+@login_required
+def priority(request):
+	tasks = Task.objects.filter(owner=request.user, priority=1)
+	context = {'tasks': tasks}
+	return render(request, 'tasks/priority.html', context)
+

@@ -11,6 +11,8 @@
 	
 	<link rel="stylesheet" type="text/css" href="{% static 'tasks/main.css' %}">
 
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
 	<title>yerNoggin</title>
 
 </head>
@@ -33,12 +35,21 @@
 
 			<div class="collapse navbar-collapse justify-content-end" id="navbarToggle">
 				<div class="navbar-nav me-auto">
-					<a class="nav-item nav-link" href="{% url 'tasks-search' %}">Search</a>
+					{% if user.is_authenticated %}
+					<a class="nav-item nav-link fw-bold" href="{% url 'tasks-priority' %}">Top Priority</a>
+					
+					
+				
+					
+					
+					{% endif %}
 				</div>
 				<!-- Navbar Right Side -->
 				<div class="navbar-nav">
-					<a class="nav-item nav-link" href="{% url 'tasks-about' %}">About</a>
+					
 					{% if user.is_authenticated %}
+
+					<a class="nav-item nav-link" href="{% url 'tasks-search' %}"><span class="material-symbols-outlined">search</span></a>
 
 					<a class="nav-item nav-link" href="{% url 'profile' %}">Profile ({{ user.username }})</a>
 					<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
@@ -46,6 +57,7 @@
 					<a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
 					<a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
 					{% endif %}
+					<a class="nav-item nav-link" href="{% url 'tasks-about' %}">About</a>
 					
 
 				</div>
