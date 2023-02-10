@@ -5,8 +5,9 @@
 {% block content %}
 
 <div class="content-section">
-	<h3>List: {{ list_item.name }}</h3>
-	Tasks:
+	<h3>List: {{ list_item.name }}</h3><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
+	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
+	<p>Tasks:</p>
 	<ul class="list-group">
 		
 	{% for task in list_tasks %}
@@ -19,8 +20,7 @@
     {% endfor %}
 	</ul>
 
-	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
-	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
+	
 </div>
 
 {% endblock %}

@@ -6,7 +6,9 @@
 
 <div class="content-section">
 	<h3>Task: {{ task.name }}</h3>
-	Lists:
+	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatetask' task.id %}">Edit</a>
+<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletetask' task.id %}">Delete</a>
+	<p>Lists:</p>
 <ul>
 
 	{% for list in task_lists %}
@@ -22,8 +24,7 @@
 <p>Notes: {{ task.notes }}</p>
 <p>Web site: {{ task.url }}</p>
 
-<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatetask' task.id %}">Edit</a>
-<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletetask' task.id %}">Delete</a>
+
 </div>
 
 {% endblock %}

@@ -15,6 +15,19 @@ def home(request):
 	}
 	return render(request, 'tasks/home.html', context)
 
+@login_required
+def lists(request):
+	context = {
+	'lists': List.objects.filter(owner=request.user),
+	}
+	return render(request, 'tasks/lists.html', context)
+
+@login_required
+def tasks(request):
+	context = {
+	'tasks': Task.objects.filter(owner=request.user),
+	}
+	return render(request, 'tasks/tasks.html', context)
 
 @login_required
 def about(request):

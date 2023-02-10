@@ -38,6 +38,9 @@
 				<div class="navbar-nav me-auto">
 					{% if user.is_authenticated %}
 					<a class="nav-item nav-link fw-bold" href="{% url 'tasks-priority' %}">Top Priority</a>
+					<a class="nav-item nav-link" href="{% url 'tasks-tasks' %}">Tasks</a>
+					<a class="nav-item nav-link" href="{% url 'tasks-lists' %}">Lists</a>
+					
 					
 					{% endif %}
 				</div>
