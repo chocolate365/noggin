@@ -18,6 +18,7 @@ def register(request):
 			List.objects.create(name='Go', owner=last_user)
 			List.objects.create(name='Do', owner=last_user)
 			List.objects.create(name='Call', owner=last_user)
+			List.objects.create(name='Groceries', owner=last_user)
 			List.objects.create(name='Online', owner=last_user)
 			List.objects.create(name='Medical', owner=last_user)
 			List.objects.create(name='Money management', owner=last_user)
@@ -26,7 +27,6 @@ def register(request):
 			List.objects.create(name='Books to read', owner=last_user)
 			List.objects.create(name='Restaurants to try', owner=last_user)
 			List.objects.create(name='Vacation places', owner=last_user)
-			List.objects.create(name='Shopping', owner=last_user)
 			List.objects.create(name='Gifts to buy', owner=last_user)
 			List.objects.create(name='Waiting', owner=last_user)
 			

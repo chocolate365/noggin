@@ -1,6 +1,6 @@
 <!-- tasks/task.html -->
 
-{% extends 'tasks/base2.html' %}
+{% extends 'tasks/base.html' %}
 
 {% block content %}
 
@@ -9,6 +9,7 @@
 	<p class='text-muted'>
 
 		<ul class="list-group">
+			<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-task' %}">Add a task</a></li>
 
 			{% for task in tasks %}
 			<li class="list-group-item list-group-item-light">
