@@ -12,10 +12,24 @@
 
 						<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-list' %}">Add a list</a></li>
 
+
+
+
+
+
+<form class="sortable" hx-post="/items" hx-trigger="end">
+  <div class="htmx-indicator">Updating...</div>
+  
+
+
 						{% for list in lists %}
+						<div>
+        		<input type="hidden" name="item" value="{{ list.pk }}" />
 						<li class="list-group-item list-group-item-light">
-						<a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
+						# {{ list.pk }}:<a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
+					</div>
 						{% endfor %}
+					</form>
 
 					</ul>
 

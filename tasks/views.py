@@ -108,16 +108,12 @@ def search(request):
 	searchTerm = request.GET.get('searchNoggin')
 	if searchTerm:
 		
-		#tasks = Task.objects.filter(name__icontains=searchTerm)
-		#lists = List.objects.filter(name__icontains=searchTerm)
 		tasks = Task.objects.filter(owner=request.user).filter(name__icontains=searchTerm)
 		lists = List.objects.filter(owner=request.user).filter(name__icontains=searchTerm)
 	else:
 		tasks = Task.objects.filter(owner=request.user)
 		lists = List.objects.filter(owner=request.user)
-		#tasks = Task.objects.all()
-		#lists = List.objects.all()
-	
+		
 	return render(request, 'tasks/search.html', {'searchTerm': searchTerm, 'tasks': tasks, 'lists': lists})
 
 
