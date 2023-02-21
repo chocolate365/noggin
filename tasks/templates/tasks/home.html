@@ -3,31 +3,44 @@
 {% block content %}
 
 <div class="content-section col-md-8">
-	<!--		<h4>Tasks</h4> -->
+	<h4>Tasks</h4>
 	<p class='text-muted'>
 
 		<ul class="list-group">
 
-			<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-task' %}">Add a task</a><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-list' %}">Add a list</a></li>
-
-
-			{% for list in lists %}
 			<li class="list-group-item list-group-item-light">
-				<a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
+				<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-task' %}">Add a task</a>
 			</li>
-			
-				<ol>
-					{% for task in list.tasks.all %}
-					<li class="list-group-item list-group-item-light">
-						<a class="link-secondary" href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})</li>
-					{% endfor %}
-				</ol>
-			{% endfor %}
 
-		</ul>
+			{% for task in tasks %}
+			<li class="list-group-item list-group-item-light">
+				<a class="link-secondary" href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})</li>{% endfor %}
 
-	</p>
-</div>
+			</ul>
+
+		</p>
+	</div>
+
+	<div class="content-section col-md-4">
+		<h4>Lists</h4>
+		<p class='text-muted'>
+
+			<ul class="list-group">
+
+				<li class="list-group-item list-group-item-light">
+					<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-list' %}">Add a list</a>
+				</li>
+
+				{% for list in lists %}
+				<li class="list-group-item list-group-item-light">
+					<a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
+				</li>		
+				{% endfor %}
+
+			</ul>
+
+		</p>
+	</div>
 
 
 {% endblock %}

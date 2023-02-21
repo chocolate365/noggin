@@ -29,6 +29,7 @@ def register(request):
 			List.objects.create(name='Vacation places', owner=last_user)
 			List.objects.create(name='Gifts to buy', owner=last_user)
 			List.objects.create(name='Waiting', owner=last_user)
+			List.objects.create(name='Bucket list', owner=last_user)
 			
 			return redirect('login')
 	else:

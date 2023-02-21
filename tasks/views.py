@@ -69,6 +69,7 @@ def new_list(request):
 		if form.is_valid():
 			to_save = form.save(commit=False)
 			to_save.owner = request.user
+			form.display_order = to_save.id
 			form.save()
 			return redirect('/')
 			
@@ -178,9 +179,11 @@ def updatelist(request, list_id):
 
 @login_required
 def deletelist(request, list_id):
-	task = get_object_or_404(List, pk=list_id, owner=request.user)
-	task.delete()
-	return redirect('/')
+	list = get_object_or_404(List, pk=list_id, owner=request.user)
+	list.delete()
+	lists = List.objects.filter(owner=request.user)
+	#return redirect('/')
+	return render(request, 'tasks/lists.html', {'lists': lists})
 
 
 @login_required

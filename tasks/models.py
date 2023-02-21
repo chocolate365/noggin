@@ -9,7 +9,7 @@ class List(models.Model):
 	owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
 	class Meta:
-		ordering = ['pk']
+		ordering = ['display_order']
 
 	def __str__(self):
 		return self.name
