@@ -33,7 +33,7 @@
 
 				{% for list in lists %}
 				<li class="list-group-item list-group-item-light">
-					<a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
+					<a class="link-secondary" href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}</a>
 				</li>		
 				{% endfor %}
 

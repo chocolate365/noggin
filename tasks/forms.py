@@ -32,7 +32,7 @@ class ListForm(forms.ModelForm):
 
 	class Meta:
 		model = List
-		fields = ('name', 'display_order')
+		fields = ('name',)
 
 	def __init__(self, user, *args, **kwargs):
 		super(ListForm, self).__init__(*args, **kwargs)

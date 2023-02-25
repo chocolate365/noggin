@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between">
+
+	<section>
+
+		{% csrf_token %}
+		<form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target="#list-list">
+			<div class="htmx-indicator">Updating...</div>
+			{% for list in lists %}
+			<div>
+				<input type="hidden" name="list_order" value="{{ list.pk }}" />
+				<!--
+				<li class="list-group-item d-flex justify-content-between align-items-center">
+					#{{list.display_order}} {{ list.name }}
+					
+				</li>
+			-->
+				<li class="list-group-item list-group-item-light">
+					<a class="link-secondary" href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}</a>
+				</li>
+			</div>
+			{% endfor %}
+		</form>
+	</section>
+</div>

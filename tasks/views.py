@@ -192,3 +192,15 @@ def priority(request):
 	context = {'tasks': tasks}
 	return render(request, 'tasks/priority.html', context)
 
+
+def sort(request):
+    list_pks_order = request.POST.getlist('list_order')
+    lists = []
+    for idx, list_pk in enumerate(list_pks_order, start=1):
+        userlist = List.objects.get(pk=list_pk)
+        userlist.display_order = idx
+        userlist.save()
+        lists.append(userlist)
+
+    return render(request, 'partials/list-list.html', {'lists': lists})
+

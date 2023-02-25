@@ -2,46 +2,26 @@
 
 {% block content %}
 
-<div class="content-section col-md-8">			
+<div class="content-section" col-md-8>			
 
 
 	<h4>Lists</h4>
+	<main class="d-flex">
 	<p class='text-muted'>
 
 		<ul class="list-group">
 
 			<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-list' %}">Add a list</a></li>
 
+			
+        <section id="list-list">
+            {% include 'partials/list-list.html' %}
+        </section>
+    
 
-
-
-
-
-			<form class="sortable" hx-post="/items" hx-trigger="end">
-				
-				<div class="htmx-indicator">Updating...</div>
-
-
-
-				{% for list in lists %}
-
-
-
-				<div>
-					<input type="hidden" name="item" value="{{ list.pk }}" />
-					<li class="list-group-item list-group-item-light">
-						<a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a></li>
-				</div>
-
-
-
-				{% endfor %}
-
-			</form>
-
-			</ul>
-
-		</p>
-	</div>
+		</ul>
+	</p>
+	</main>
+</div>
 
 			{% endblock %}
