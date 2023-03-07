@@ -3,16 +3,18 @@
 {% extends 'tasks/base.html' %}
 
 {% block content %}
-
+<div class="searchform">
 	<form action="">
 		<input type="text" name="searchNoggin" />
 		<button type="submit">Search</button>
 	</form>
 	<p>Searching for {{ searchTerm }}</p>
+</div>
+
 
 {% if tasks or lists %}
 	{% if tasks %}
-	<div>
+	<div class="tasktest">
 		<h4>Tasks</h4>
 		<ul>
 			{% for task in tasks %}
@@ -25,7 +27,7 @@
 	{% endif %}
 
 	{% if lists %}
-	<div>			
+	<div class="listtest">			
 		<h4>Lists</h4>
 		<ul>
 			{% for list in lists %}
@@ -40,5 +42,6 @@
 {% else %}
 <p>Not found</p>
 {% endif %}
+
 	
 {% endblock %}

@@ -2,13 +2,14 @@
 
 {% block content %}
 
-<div>
+<div class="task-child">
 	<h4>Tasks</h4>
 	<p>
 		<ul>
 			<li>
 				<a href="{% url 'new-task' %}">Add a task</a>
 			</li>
+			<br>
 
 			{% for task in tasks %}
 			<li>

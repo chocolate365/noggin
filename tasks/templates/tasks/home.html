@@ -2,13 +2,14 @@
 
 {% block content %}
 
-<div>
+<section class="task-child">
 	<h4>Tasks</h4>
 	<p>
 		<ul>
 			<li>
 				<a href="{% url 'new-task' %}">Add a task</a>
 			</li>
+			<br>
 
 			{% for task in tasks %}
 			<li>
@@ -18,15 +19,16 @@
 			
 		</ul>
 	</p>
-</div>
+</section>
 
-<div >
+<section class="list-child">
 	<h4>Lists</h4>
 	<p>
 		<ul>
 			<li>
 				<a href="{% url 'new-list' %}">Add a list</a>
 			</li>
+			<br>
 
 			{% for list in lists %}
 			<li>
@@ -35,6 +37,7 @@
 			{% endfor %}
 		</ul>
 	</p>
-</div>
+	
+</section>
 
 {% endblock %}
