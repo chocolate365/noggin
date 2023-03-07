@@ -4,23 +4,23 @@
 
 {% block content %}
 
-<div class="content-section">
-	<h3>List: {{ list_item.name }}</h3><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
-	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
+<div>
+	<h3>List: {{ list_item.name }}</h3>
+	<a href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
+	<a href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
 	<p>Tasks:</p>
-	<ul class="list-group">
+	<ul>
 		
 	{% for task in list_tasks %}
-		<li class="list-group-item list-group-item-light"> 
-			<a class="link-secondary" href="{% url 'tasks-task' task.id %}">#{{ task.pk }} {{ task.name }}</a> ({{ task.priority }}
+		<li> 
+			<a href="{% url 'tasks-task' task.id %}">#{{ task.pk }} {{ task.name }}</a> ({{ task.priority }}
 			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
-			{% if task.url %}, {{ task.url }}{% endif %})</li>
+			{% if task.url %}, {{ task.url }}{% endif %})
+		</li>
 	{% empty %}
 		There are no tasks in this list yet.
     {% endfor %}
 	</ul>
-
-	
 </div>
 
 {% endblock %}

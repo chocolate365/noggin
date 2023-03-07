@@ -4,26 +4,25 @@
 
 {% block content %}
 
-<div class="content-section">
+<div>
 	<h3>Task: {{ task.name }}</h3>
-	<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-updatetask' task.id %}">Edit</a>
-<a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'tasks-deletetask' task.id %}">Delete</a>
+	<a href="{% url 'tasks-updatetask' task.id %}" class="rd-btn">Edit</a>
+	<a href="{% url 'tasks-deletetask' task.id %}" class="rd-btn">Delete</a>
 	<p>Lists:</p>
-<ul>
+	<ul>
+		{% for list in task_lists %}
+			<li><a class="link-secondary" href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}</a>
+			</li>
+		{% empty %}
+			This task has not been added to any lists yet.
+		{% endfor %}
+	</ul>
 
-	{% for list in task_lists %}
-		<li><a class="link-secondary" href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}</a></li>
-	{% empty %}
-		This task has not been added to any lists yet.
-	{% endfor %}
-</ul>
-
-<p>Priority: {{ task.priority }}</p>
-<p>Date added: {{ task.date_added|date:'F j, Y' }}</p>
-<p>User date: {{ task.user_date|date:'F j, Y' }}</p>
-<p>Notes: {{ task.notes }}</p>
-<p>Web site: {{ task.url }}</p>
-
+	<p>Priority: {{ task.priority }}</p>
+	<p>Date added: {{ task.date_added|date:'F j, Y' }}</p>
+	<p>User date: {{ task.user_date|date:'F j, Y' }}</p>
+	<p>Notes: {{ task.notes }}</p>
+	<p>Web site: {{ task.url }}</p>
 
 </div>
 

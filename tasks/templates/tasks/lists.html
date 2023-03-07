@@ -2,26 +2,20 @@
 
 {% block content %}
 
-<div class="content-section" col-md-8>			
-
-
+<div>			
 	<h4>Lists</h4>
-	<main class="d-flex">
-	<p class='text-muted'>
-
-		<ul class="list-group">
-
-			<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-list' %}">Add a list</a></li>
-
+	<p>
+		<ul>
+			<li>
+				<a href="{% url 'new-list' %}">Add a list</a>
+			</li>
 			
-        <section id="list-list">
-            {% include 'partials/list-list.html' %}
-        </section>
+        	<section id="list-list">
+           		{% include 'partials/list-list.html' %}
+        	</section>
     
-
 		</ul>
 	</p>
-	</main>
 </div>
 
-			{% endblock %}
+{% endblock %}

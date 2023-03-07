@@ -2,21 +2,22 @@
 
 {% block content %}
 
-			<div class="content-section col-md-8">
-				<h4>Tasks</h4>
-				<p class='text-muted'>
+<div>
+	<h4>Tasks</h4>
+	<p>
+		<ul>
+			<li>
+				<a href="{% url 'new-task' %}">Add a task</a>
+			</li>
 
-					<ul class="list-group">
+			{% for task in tasks %}
+			<li>
+				<a href="{% url 'tasks-task' task.id %}">#{{ task.pk }} {{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})
+			</li>
+			{% endfor %}
+			
+		</ul>
+	</p>
+</div>
 
-						<li class="list-group-item list-group-item-light"><a class="btn btn-primary me-2 btn-outline-info bg-light text-secondary" href="{% url 'new-task' %}">Add a task</a></li>
-
-						{% for task in tasks %}
-						<li class="list-group-item list-group-item-light">
-						<a class="link-secondary" href="{% url 'tasks-task' task.id %}">#{{ task.pk }} {{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})</li>{% endfor %}
-
-					</ul>
-
-				</p>
-			</div>
-
-			{% endblock %}
+{% endblock %}
