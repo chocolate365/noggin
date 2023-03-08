@@ -1,3 +1,5 @@
+<!-- partials/list-list.html -->
+
 <div>
 	<section>
 
@@ -9,7 +11,8 @@
 			<div>
 				<input type="hidden" name="list_order" value="{{ list.pk }}" />
 				<li>
-					<a href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}
+					<a href="{% url 'tasks-list' list.id %}">
+						{{ list.name }} ({{ list.tasks.count }})
 					</a>
 				</li>
 			</div>

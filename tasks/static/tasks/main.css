@@ -1,3 +1,6 @@
+/* static/tasks/main.css */
+
+/* Big stuff */
 * {
   box-sizing: border-box;
 }
@@ -11,52 +14,19 @@ body {
   color: dimgray;
 }
 
-@media (min-width: 768px) {
-  .parent {
-    display: flex;
-  }
-}
-
 h4 {
   padding: 7px;
-  margin: 30px;
-  margin-bottom: 5px;
-  /*width: 100px; */
+  margin-bottom: 10px;
   display: inline-block;
+  border-left: 5px solid;
 }
 
-.task-child {
-  width: 70%;
+ul {
+  list-style: none;
 }
 
-.task-child h4 { /*
-  background-color: #b197fc; */
-  border: 3px solid #b197fc; /*
-  border-radius: 15px; */
-}
-
-.list-child {
-  width: 30%;
-  /*border: 5px solid #63e6be;*/
-}
-
-.list-child h4 { /*
-  background-color: #ffd43b; */
-  border: 3px solid #74c0fc; /*  */
-}
-
-.searchform {
-  border: 3px solid red;
-}
-
-.tasktest {
-  width: 70%;
-  border: 3px solid purple;
-}
-
-.listtest {
-  width: 30%;
-  border: 3px solid green;
+li {
+  padding: 1px;
 }
 
 a {
@@ -68,10 +38,12 @@ a:hover {
   text-decoration: underline;
   color: black;
 }
+/* end Big Stuff */
 
+
+/* Header/Nav */
 header {
-  /* sticky */
-  position:sticky;
+  position:sticky;  /* sticky header*/
   top:0px;
 }
 
@@ -80,7 +52,6 @@ nav {
   background-color: #FFC107;
   padding: 10px;
   box-shadow: 5px 5px 8px dimgray;
-  margin-bottom: 1rem;
 }
 
 nav a {
@@ -96,7 +67,91 @@ nav a:first-child {
 .right-nav {
   float: right;
 }
+/* end Header/Nav */
 
+
+/* main */
+main {
+  margin: 30px;
+}
+
+@media (min-width: 768px) {
+  main {
+    display: flex;
+  }
+}
+
+.add-something {
+  padding: 7px;
+  border: 2px solid;
+  border-radius: 5px;
+  margin-left: 0;
+}
+
+.add-task {
+  border-color: #b197fc;
+}
+
+.add-list {
+  border-color: #74c0fc;
+}
+
+.delete-something {
+  border-color: #ff0000;
+}
+
+/* home.html */
+.task-child {
+  width: 70%;
+}
+
+.task-child h4 {
+  border-color: #b197fc;
+}
+
+.big-list-child {
+  width: 40%;
+}
+
+.list-child {
+  width: 30%;
+}
+
+.list-child h4, .big-list-child h4 {
+  border-color: #74c0fc;
+}
+/* end home.html */
+
+/* priority.html */
+.priority-child h4 {
+  border-color: #FF0000;
+}
+/* end priority.html */
+
+/* search.html */
+.searchform {
+  width: 25%;
+}
+
+.searchform h4 {
+  border-color: #63e6be;
+}
+
+.searchbtn {
+  margin-bottom: 10px;
+}
+/* end search.html */
+
+/* about.html */
+.about-child h4 {
+  border-color: #63e6be;
+}
+/* end about.html */
+/* end Main */
+
+
+/* Footer */
 footer {
   text-align: center;
 }
+/* end Footer */

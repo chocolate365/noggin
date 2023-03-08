@@ -1,21 +1,10 @@
+<!-- tasks/lists.html -->
+
 {% extends 'tasks/base.html' %}
 
 {% block content %}
 
-<div class="list-child">			
-	<h4>Lists</h4>
-	<p>
-		<ul>
-			<li>
-				<a href="{% url 'new-list' %}">Add a list</a>
-			</li>
-			
-        	<section id="list-list">
-           		{% include 'partials/list-list.html' %}
-        	</section>
-    
-		</ul>
-	</p>
-</div>
+<!-- display all lists -->
+{% include 'partials/list-page.html' %}
 
 {% endblock %}

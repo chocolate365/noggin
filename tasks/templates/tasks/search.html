@@ -3,40 +3,42 @@
 {% extends 'tasks/base.html' %}
 
 {% block content %}
-<div class="searchform">
+<section class="searchform">
+	<h4>Search</h4>
+		<p>
 	<form action="">
-		<input type="text" name="searchNoggin" />
+		<input type="text" name="searchNoggin" class="searchbtn" />
 		<button type="submit">Search</button>
 	</form>
 	<p>Searching for {{ searchTerm }}</p>
-</div>
+</section>
 
 
 {% if tasks or lists %}
 	{% if tasks %}
-	<div class="tasktest">
+	<section class="task-child">
 		<h4>Tasks</h4>
-		<ul>
-			{% for task in tasks %}
-			<li>
-				<a href="{% url 'tasks-task' task.id %}">{{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})
-			</li>
-			{% endfor %}
-		</ul>
-	</div>
+		{% include 'partials/task-page.html' %}
+	</section>
 	{% endif %}
 
 	{% if lists %}
-	<div class="listtest">			
+	<section class="list-child">			
 		<h4>Lists</h4>
+		<p>
 		<ul>
+
+			<!-- This part is replaced by partials/list-list.html if the lists are to be able to be drag-and-drop sorted, but since the search feature only displays a subset of lists, sorting screws them all up.  This just does a plain vanilla display of the lists.-->
 			{% for list in lists %}
 			<li>
 				<a href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
 			</li>
 			{% endfor %}
+
+
 		</ul>
-	</div>
+	</p>
+	</section>
 	{% endif %}
 
 {% else %}

@@ -4,12 +4,17 @@
 
 {% block content %}
 
-<div>
-	<h3>List: {{ list_item.name }}</h3>
-	<a href="{% url 'tasks-updatelist' list_item.id %}">Edit list name</a>
-	<a href="{% url 'tasks-deletelist' list_item.id %}">Delete list</a>
+<div class="big-list-child">
+	<h4>List <em>{{ list_item.name }}</em></h4>
+	<a href="{% url 'tasks-updatelist' list_item.id %}" class="add-something add-list" >Edit list name</a>
+	<a href="{% url 'tasks-deletelist' list_item.id %}" class="add-something delete-something" >Delete list</a>
 	<p>Tasks:</p>
 	<ul>
+		
+		<li class="liststyle">
+				<a href="{% url 'new-task' %}" class="add-something add-task">Add a task</a>
+			</li>
+			<br>
 		
 	{% for task in list_tasks %}
 		<li> 

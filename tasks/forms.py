@@ -8,11 +8,11 @@ class TaskForm(forms.ModelForm):
 		model = Task
 		fields = ('name', 'lists', 'priority', 'user_date', 'url', 'notes')
 		labels = {
-		'name': 'Remember', 
+		'name': 'Task', 
 		'lists': 'Lists', 
 		'priority': 'Priority', 
 		'user_date': 'Date',
-		'url': 'Web site'
+		'url': 'URL'
 
 		}
 		widgets = {

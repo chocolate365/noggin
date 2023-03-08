@@ -17,8 +17,10 @@ def home(request):
 
 @login_required
 def lists(request):
+	lists = List.objects.filter(owner=request.user)
+	tasks = Task.objects.filter(owner=request.user)
 	context = {
-	'lists': List.objects.filter(owner=request.user),
+	'lists': lists, 'tasks': tasks,
 	}
 	return render(request, 'tasks/lists.html', context)
 
@@ -31,34 +33,22 @@ def tasks(request):
 
 @login_required
 def about(request):
-	context = {
-	'lists': List.objects.filter(owner=request.user),
-	'tasks': Task.objects.filter(owner=request.user),
-	}
-	return render(request, 'tasks/about.html', context)
+	return render(request, 'tasks/about.html')
 
 
 @login_required
 def list(request, list_id):
-	lists = List.objects.filter(owner=request.user)
-	tasks = Task.objects.filter(owner=request.user)
 	list_item = List.objects.get(id=list_id)
-	#if list.owner != request.user:
-	#	return redirect('/')
 	list_tasks = list_item.tasks.order_by('priority', '-date_added')
-	context = {'lists': lists, 'tasks': tasks, 'list_item': list_item, 'list_tasks': list_tasks}
+	context = {'list_item': list_item, 'list_tasks': list_tasks}
 	return render(request, 'tasks/list.html', context)
 
 
 @login_required
 def task(request, task_id):
 	task = Task.objects.get(id=task_id)
-	#if task.owner != request.user:
-	#	return redirect('/')
 	task_lists = task.lists.all()
-	lists = List.objects.filter(owner=request.user)
-	tasks = Task.objects.filter(owner=request.user)
-	context = {'task': task, 'task_lists': task_lists, 'lists': lists, 'tasks': tasks}
+	context = {'task': task, 'task_lists': task_lists}
 	return render(request, 'tasks/task.html', context)
 
 
@@ -198,8 +188,9 @@ def sort(request):
     lists = []
     for idx, list_pk in enumerate(list_pks_order, start=1):
         userlist = List.objects.get(pk=list_pk)
-        userlist.display_order = idx
-        userlist.save()
+        if idx != userlist.display_order:
+        	userlist.display_order = idx
+        	userlist.save()
         lists.append(userlist)
 
     return render(request, 'partials/list-list.html', {'lists': lists})

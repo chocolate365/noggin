@@ -1,10 +1,10 @@
-<!-- new_list.html -->
+<!-- tasks/new_list.html -->
 
 {% extends 'tasks/base.html' %}
 
 {% block content %}
 
-<p>Add a list:</p>
+<!--<p>Add a list:</p>-->
 <form method="POST">
 	{% csrf_token %}
 	{{ form.as_p }}

@@ -1,43 +1,16 @@
+<!-- tasks/home.html -->
+
 {% extends 'tasks/base.html' %}
 
 {% block content %}
 
+<!-- display all tasks -->
 <section class="task-child">
 	<h4>Tasks</h4>
-	<p>
-		<ul>
-			<li>
-				<a href="{% url 'new-task' %}">Add a task</a>
-			</li>
-			<br>
-
-			{% for task in tasks %}
-			<li>
-				<a href="{% url 'tasks-task' task.id %}">#{{ task.pk }} {{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})
-			</li>
-			{% endfor %}
-			
-		</ul>
-	</p>
+	{% include 'partials/task-page.html' %}
 </section>
 
-<section class="list-child">
-	<h4>Lists</h4>
-	<p>
-		<ul>
-			<li>
-				<a href="{% url 'new-list' %}">Add a list</a>
-			</li>
-			<br>
-
-			{% for list in lists %}
-			<li>
-				<a href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}</a>
-			</li>		
-			{% endfor %}
-		</ul>
-	</p>
-	
-</section>
+<!-- display all lists -->
+{% include 'partials/list-page.html' %}
 
 {% endblock %}
