@@ -39,7 +39,7 @@ def about(request):
 @login_required
 def list(request, list_id):
 	list_item = List.objects.get(id=list_id)
-	list_tasks = list_item.tasks.order_by('priority', '-date_added')
+	list_tasks = list_item.tasks.order_by('display_order')
 	context = {'list_item': list_item, 'list_tasks': list_tasks}
 	return render(request, 'tasks/list.html', context)
 
@@ -178,8 +178,9 @@ def deletelist(request, list_id):
 
 @login_required
 def priority(request):
-	tasks = Task.objects.filter(owner=request.user, priority=1)
-	context = {'tasks': tasks}
+	priority_list = List.objects.get(name='Priority')
+	tasks = priority_list.tasks.order_by('display_order')
+	context = {'priority_list': priority_list, 'tasks': tasks}
 	return render(request, 'tasks/priority.html', context)
 
 
@@ -194,4 +195,17 @@ def sort(request):
         lists.append(userlist)
 
     return render(request, 'partials/list-list.html', {'lists': lists})
+
+def sorttask(request):
+    task_pks_order = request.POST.getlist('task_order')
+    tasks = []
+    for idx, task_pk in enumerate(task_pks_order, start=1):
+        usertask = Task.objects.get(pk=task_pk)
+        if idx != usertask.display_order:
+        	usertask.display_order = idx
+        	usertask.save()
+        tasks.append(usertask)
+
+    return render(request, 'partials/task-list.html', {'tasks': tasks})
+
 

@@ -35,7 +35,6 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
   color: black;
 }
 /* end Big Stuff */
@@ -90,14 +89,42 @@ main {
 
 .add-task {
   border-color: #b197fc;
+  background-color: #b197fc;
+  color: #ffffff;
+}
+
+.add-task:hover {
+  border-color: #6741d9;
+  background-color: #6741d9;
+  color: #ffffff;
 }
 
 .add-list {
   border-color: #74c0fc;
+  background-color: #74c0fc;
+  color: #ffffff;
+}
+
+.add-list:hover {
+  border-color: rgb(20, 110, 190);
+  background-color: rgb(20, 110, 190);
+  color: #ffffff;
 }
 
 .delete-something {
-  border-color: #ff0000;
+  border-color: #ff5733;
+  background-color: #ff5733;
+  color: #ffffff;
+}
+
+.delete-something:hover {
+  border-color: #c72a00;
+  background-color: #c72a00;
+  color: #ffffff;
+}
+
+.detail {
+  padding: 10px;
 }
 
 /* home.html */
@@ -124,7 +151,7 @@ main {
 
 /* priority.html */
 .priority-child h4 {
-  border-color: #FF0000;
+  border-color: #ff5733;
 }
 /* end priority.html */
 
@@ -147,6 +174,12 @@ main {
   border-color: #63e6be;
 }
 /* end about.html */
+
+/* profile.html */
+.profile-child h4 {
+  border-color: #e599f7;
+}
+/* end profile.html */
 /* end Main */
 
 

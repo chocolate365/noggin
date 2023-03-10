@@ -5,20 +5,19 @@
 {% block content %}
 
 <div class="task-child">
-	<h4>Task <em>{{ task.name }}</em></h4>
-	<a href="{% url 'tasks-updatetask' task.id %}" class="add-something add-task" >Edit</a>
-	<a href="{% url 'tasks-deletetask' task.id %}" class="add-something delete-something" >Delete</a>
+	<h4>Task: <span class="detail">{{ task.name }}</span></h4>
+	<a href="{% url 'tasks-updatetask' task.id %}" class="add-something add-task fa-solid fa-pencil" ></a>
+	<a href="{% url 'tasks-deletetask' task.id %}" class="add-something delete-something fa-solid fa-trash" ></a>
 	<p>Lists:</p>
 	<ul>
 		{% for list in task_lists %}
-			<li><a class="link-secondary" href="{% url 'tasks-list' list.id %}">#{{list.display_order}} {{ list.name }}</a>
+			<li><a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
 			</li>
 		{% empty %}
 			This task has not been added to any lists yet.
 		{% endfor %}
 	</ul>
 
-	<p>Priority: {{ task.priority }}</p>
 	<p>Date added: {{ task.date_added|date:'F j, Y' }}</p>
 	<p>User date: {{ task.user_date|date:'F j, Y' }}</p>
 	<p>Notes: {{ task.notes }}</p>

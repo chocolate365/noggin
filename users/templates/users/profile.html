@@ -1,25 +1,23 @@
+<!-- users/profile.html -->
+
 {% extends 'tasks/base.html' %}
 {% block content %}
-<div>
-	<div>
-		<div>
-		
-			<img src="{{ user.profile.image.url }}">		
-			<h2>{{ user.username }}</h2>
-			<p>{{ user.email }}</p>
+<div class="profile-child">
+	<h4>Profile</h4>
+	<p>
+		<img src="{{ user.profile.image.url }}">		
+		<h2>{{ user.username }}</h2>
+		<p>{{ user.email }}</p>
 
-	</div>
-</div>
-	<form method="POST" enctype="multipart/form-data">
-		{% csrf_token %}
-		<fieldset>
-			<legend>Profile Info</legend>
-			{{ u_form.as_p}}
-			{{ p_form.as_p }}
-		</fieldset>
-		<div>
+		<form method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<fieldset>
+				<legend>Profile Info</legend>
+				{{ u_form.as_p}}
+				{{ p_form.as_p }}
+			</fieldset>
 			<button type="submit">Update</button>				
-		</div>
-	</form>
+		</form>
+	</p>
 </div>
 {% endblock content %}

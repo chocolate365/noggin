@@ -2,16 +2,15 @@
 
 	<p>
 		<ul>
-			<li class="liststyle">
+			<li class="liststyle taskbtn">
 				<a href="{% url 'new-task' %}" class="add-something add-task">Add a task</a>
 			</li>
-			<br>
-
-			{% for task in tasks %}
-			<li>
-				<a href="{% url 'tasks-task' task.id %}" >#{{ task.pk }} {{ task.name }}</a> ({{task.priority}}{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %})
-			</li>
-			{% endfor %}
-			
 		</ul>
+		<ol>
+			
+			<section id="task-list">
+           		{% include 'partials/task-list.html' %}
+        	</section>
+			
+		</ol>
 	</p>

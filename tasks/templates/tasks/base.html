@@ -39,11 +39,11 @@
 
 			{% if user.is_authenticated %}
 
-			<a href="{% url 'tasks-priority' %}">Top Priority</a>
-			<a href="{% url 'tasks-search' %}" 
-				class="fa-solid fa-magnifying-glass"></a> <!-- Search -->
+			<a href="{% url 'tasks-priority' %}">Priority</a>
 			<a href="{% url 'tasks-tasks' %}">Tasks</a>
 			<a href="{% url 'tasks-lists' %}">Lists</a>
+			<a href="{% url 'tasks-search' %}" 
+				class="fa-solid fa-magnifying-glass"></a> <!-- Search -->
 			<a href="{% url 'logout' %}" class="right-nav">Logout</a>
 			<a href="{% url 'profile' %}" class="right-nav">Profile ({{ user.username }})</a>
 			<a href="{% url 'tasks-about' %}" class="right-nav">About</a>

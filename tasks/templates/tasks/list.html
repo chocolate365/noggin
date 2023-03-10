@@ -5,27 +5,27 @@
 {% block content %}
 
 <div class="big-list-child">
-	<h4>List <em>{{ list_item.name }}</em></h4>
-	<a href="{% url 'tasks-updatelist' list_item.id %}" class="add-something add-list" >Edit list name</a>
-	<a href="{% url 'tasks-deletelist' list_item.id %}" class="add-something delete-something" >Delete list</a>
+	<h4>List: <span class="detail">{{ list_item.name }}</span></h4>
+	<a href="{% url 'tasks-updatelist' list_item.id %}" class="add-something add-list fa-solid fa-pencil" ></a>
+	<a href="{% url 'tasks-deletelist' list_item.id %}" class="add-something delete-something fa-solid fa-trash" ></a>
 	<p>Tasks:</p>
 	<ul>
-		
 		<li class="liststyle">
-				<a href="{% url 'new-task' %}" class="add-something add-task">Add a task</a>
-			</li>
-			<br>
-		
-	{% for task in list_tasks %}
-		<li> 
-			<a href="{% url 'tasks-task' task.id %}">#{{ task.pk }} {{ task.name }}</a> ({{ task.priority }}
-			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
-			{% if task.url %}, {{ task.url }}{% endif %})
+			<a href="{% url 'new-task' %}" class="add-something add-task">Add a task</a>
 		</li>
-	{% empty %}
-		There are no tasks in this list yet.
-    {% endfor %}
 	</ul>
+	<br>
+	<ol>
+		{% for task in list_tasks %}
+		<li> 
+			<a href="{% url 'tasks-task' task.id %}">{{ task.display_order }} {{ task.name }}</a>
+			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
+			{% if task.url %}, {{ task.url }}{% endif %}
+		</li>
+		{% empty %}
+		There are no tasks in this list yet.
+    	{% endfor %}
+	</ol>
 </div>
 
 {% endblock %}

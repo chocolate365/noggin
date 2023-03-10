@@ -1,0 +1,21 @@
+<!-- partials/task-list.html -->
+
+<div>
+	<section>
+
+		{% csrf_token %}
+		<form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sorttask' %}" hx-target="#task-list">
+			<div class="htmx-indicator">Updating...</div>
+
+			{% for task in tasks %}
+			<div>
+				<input type="hidden" name="task_order" value="{{ task.pk }}" />
+				<li>
+					<a href="{% url 'tasks-task' task.id %}" >{{ task.name }}</a>
+					{% if task.user_date %}, ({{ task.user_date|date:'F j, Y' }}){% endif %}
+				</li>
+			</div>
+			{% endfor %}
+		</form>
+	</section>
+</div>
