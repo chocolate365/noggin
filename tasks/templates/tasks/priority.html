@@ -15,17 +15,17 @@
 		</li>
 	</ul>
 	<br>
-	<ol>
+	<ul>
 		{% for task in tasks %}
 		<li> 
-			<a href="{% url 'tasks-task' task.id %}">{{ task.display_order }} {{ task.name }}</a>
+			<a href="{% url 'tasks-task' task.id %}">display order {{ task.display_order }}: {{ task.name }}</a>
 			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
 			{% if task.url %}, {{ task.url }}{% endif %}
 		</li>
 		{% empty %}
 		There are no tasks in this list yet.
 		{% endfor %}
-	</ol>
+	</ul>
 </div>
 
 {% endblock %}

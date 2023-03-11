@@ -11,8 +11,8 @@
 				<div>
 					<input type="hidden" name="list_order" value="{{ list.pk }}" />
 					<li>
-						<a href="{% url 'tasks-list' list.id %}">
-							{{ list.name }} ({{ list.tasks.count }})
+						<span class="handle fa-solid fa-bars" ></span>
+						<a href="{% url 'tasks-list' list.id %}"> {{ list.name }} ({{ list.tasks.count }})
 						</a>
 					</li>
 				</div>

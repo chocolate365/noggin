@@ -11,7 +11,8 @@
 			<div>
 				<input type="hidden" name="task_order" value="{{ task.pk }}" />
 				<li>
-					<a href="{% url 'tasks-task' task.id %}" >{{ task.name }}</a>
+					<span class="handle fa-solid fa-bars" ></span>
+					<a href="{% url 'tasks-task' task.id %}"> {{ task.name }}</a>
 					{% if task.user_date %}, ({{ task.user_date|date:'F j, Y' }}){% endif %}
 				</li>
 			</div>
