@@ -1,8 +1,9 @@
 <!-- partials/list-list.html -->
 
-<div>
+
 	<section>
-		<ol>
+		<ul class="list-group">
+
 			{% csrf_token %}
 			<form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sort' %}" hx-target="#list-list">
 				<div class="htmx-indicator">Updating...</div>
@@ -10,15 +11,22 @@
 				{% for list in lists %}
 				<div>
 					<input type="hidden" name="list_order" value="{{ list.pk }}" />
-					<li>
-						<span class="handle fa-solid fa-bars" ></span>
-						<a href="{% url 'tasks-list' list.id %}"> {{ list.name }} ({{ list.tasks.count }})
+
+					<li class="list-group-item list-group-item-action py-1">
+						<span class="handle bi bi-arrow-down-up pe-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Drag to reorder" ></span>
+						<a href="{% url 'tasks-list' list.id %}" class="link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="See all tasks in this list" > {{ list.name }} ({{ list.tasks.count }})
 						</a>
+						
+						<a href="{% url 'tasks-deletelist' list.id %}" class="bi bi-trash3 link-primary float-end" 
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this list" >
+						</a>
+						
 					</li>
+					
 				</div>
 				{% endfor %}
-				
+
 			</form>
-		</ol>
+
+		</ul>
 	</section>
-</div>

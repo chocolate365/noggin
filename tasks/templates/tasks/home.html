@@ -1,16 +1,19 @@
 <!-- tasks/home.html -->
 
 {% extends 'tasks/base.html' %}
-
+ 
 {% block content %}
+<div class="row">
 
 <!-- display all tasks -->
-<section class="task-child">
-	<h4>Tasks</h4>
+<section class="col-md-8">
 	{% include 'partials/task-page.html' %}
 </section>
 
 <!-- display all lists -->
-{% include 'partials/list-page.html' %}
-
+<section class="col-md-4">			
+	{% include 'partials/list-page.html' %}
+</section>
+	
+</div>
 {% endblock %}

@@ -2,12 +2,14 @@
 
 {% extends 'tasks/base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
 
 <!--<p>Add a list:</p>-->
 <form method="POST">
 	{% csrf_token %}
-	{{ form.as_p }}
+	{{ form|crispy }}
 	<button type="submit">Add List</button>
 </form>
 

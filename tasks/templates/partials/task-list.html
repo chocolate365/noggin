@@ -1,22 +1,51 @@
 <!-- partials/task-list.html -->
 
-<div>
+
 	<section>
+		<ul class="list-group">
 
-		{% csrf_token %}
-		<form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sorttask' %}" hx-target="#task-list">
-			<div class="htmx-indicator">Updating...</div>
+			{% csrf_token %}
+			<form class="sortable list-group" hx-trigger="end" hx-post="{% url 'sorttask' %}" hx-target="#task-list">
+				<div class="htmx-indicator">Updating...</div>
 
-			{% for task in tasks %}
-			<div>
-				<input type="hidden" name="task_order" value="{{ task.pk }}" />
-				<li>
-					<span class="handle fa-solid fa-bars" ></span>
-					<a href="{% url 'tasks-task' task.id %}"> {{ task.name }}</a>
-					{% if task.user_date %}, ({{ task.user_date|date:'F j, Y' }}){% endif %}
-				</li>
-			</div>
-			{% endfor %}
-		</form>
+				{% for task in tasks %}
+				<div>
+					<input type="hidden" name="task_order" value="{{ task.pk }}" />
+
+					<li class="list-group-item list-group-item-action py-1">
+						<span class="handle bi bi-arrow-down-up pe-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Drag to reorder" ></span>
+						<a href="{% url 'tasks-task' task.id %}" class="link-secondary text-decoration-none"  data-bs-toggle="tooltip" data-bs-placement="top" title="See task detail" > {{ task.name }}</a>
+						{% if task.user_date %}, ({{ task.user_date|date:'F j, Y' }}){% endif %}
+
+
+
+
+
+						<a href="{% url 'tasks-deletetask' task.id %}" class="bi bi-trash3 link-primary float-end"  
+						data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this task" >
+						</a>
+
+					
+						
+						
+						
+
+
+
+
+					</li>
+
+				</div>
+				{% endfor %}
+
+			</form>
+
+		</ul>
+
+<!-- {# url 'tasks-deletetask' task.id #} -->
+
+
+	
+		
 	</section>
-</div>
+

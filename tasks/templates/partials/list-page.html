@@ -1,15 +1,13 @@
-<section class="list-child">			
-	<h4>Lists</h4>
-	<p>
-		<ul>
-			<li class="liststyle listbtn">
-				<a href="{% url 'new-list' %}" class="add-something add-list">Add a list</a>
-			</li>
-		</ul>
+<!-- partials/list-page.html -->
+
+<div class="text-center mt-4">
+	<h4>
+                <a href="{% url 'new-list' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3" 
+                data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new list" >
+                </a> Lists
+        </h4>
+</div>
 			
-        	<section id="list-list">
-           		{% include 'partials/list-list.html' %}
-        	</section>
-    
-	</p>
+<section id="list-list">
+        {% include 'partials/list-list.html' %}
 </section>

@@ -3,26 +3,85 @@
 {% extends 'tasks/base.html' %}
 
 {% block content %}
+<section class="container-md">
 
-<div class="task-child">
-	<h4>Task: <span class="detail">{{ task.name }}</span></h4>
-	<a href="{% url 'tasks-updatetask' task.id %}" class="add-something add-task fa-solid fa-pencil" ></a>
-	<a href="{% url 'tasks-deletetask' task.id %}" class="add-something delete-something fa-solid fa-trash" ></a>
-	<p>Lists:</p>
-	<ul>
-		{% for list in task_lists %}
-			<li><a class="link-secondary" href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
-			</li>
-		{% empty %}
-			This task has not been added to any lists yet.
-		{% endfor %}
-	</ul>
+	<div class="row">
+		<div class="col-sm-3 mb-3 mb-sm-0">
+			<!-- Add a new task -->
+			<a href="{% url 'new-task' %}" class="bi bi-plus-lg link-dark text-decoration-none float-end m-3"
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task">
+			</a>
+		</div>
+		<div class="col-sm-6 mb-3 mb-sm-0">
+			<div class="card">
+				<div class="card-body">
+					<p class="mb-5">
 
-	<p>Date added: {{ task.date_added|date:'F j, Y' }}</p>
-	<p>User date: {{ task.user_date|date:'F j, Y' }}</p>
-	<p>Notes: {{ task.notes }}</p>
-	<p>Web site: {{ task.url }}</p>
+						<!-- Edit task -->
+						<a href="{% url 'tasks-updatetask' task.id %}" class="bi bi-pencil link-dark mx-3 float-start"
+							data-bs-toggle="tooltip" data-bs-placement="top" title="Edit this task"></a>
 
+						<!-- Delete task -->
+						<span data-bs-toggle="modal" data-bs-target="#del-task-modal">
+							<a href="#" class="bi bi-trash3 float-end" data-bs-toggle="tooltip" data-bs-placement="top"
+								title="Delete this task"></a>
+						</span>
+
+					</p>
+
+					<h4 class="card-title bg-light">{{ task.name }}</a></h4>
+					<small class="card-text">Added {{ task.date_added|date:'F j, Y' }}</small>
+					{% if task.user_date %}<div><small class="card-text">User date {{ task.user_date|date:'F j, Y' }}</small></div>{% endif %}
+					<hr>
+					{% if task.url %}
+					<p class="card-text">
+						<a href="{{ task.url }}" class="card-link link-secondary text-decoration-none">{{ task.url }}</a>
+					</p>
+					{% endif %}
+					{% if task.notes %}<p class="card-text">{{ task.notes }}</p>{% endif %}
+				</div>
+
+				{% if task_lists %}
+
+				<ul class="list-group list-group-flush">
+					<li class="list-group-item bg-light py-1">
+						Lists
+					</li>
+					{% for list in task_lists %}
+					<li class="list-group-item py-1"><a href="{% url 'tasks-list' list.id %}"
+							class="card-link link-secondary text-decoration-none" data-bs-toggle="tooltip"
+							data-bs-placement="top" title="See all tasks in this list">{{ list.name }}</a>
+					</li>
+					{% endfor %}
+				</ul>
+				{% endif %}
+
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- modal to confirm task deletion -->
+<div class="modal fade" id="del-task-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Are you sure you want to delete?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>This is irreversible!</p>
+
+			</div>
+			<div class="modal-footer">
+				<a href="{% url 'tasks-deletetask' task.id %}" class="btn btn-danger" role="button">Yes, delete</a>
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">No, do not
+					delete</button>
+			</div>
+		</div>
+	</div>
 </div>
+
 
 {% endblock %}

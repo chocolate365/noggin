@@ -1,4 +1,5 @@
 {% extends 'tasks/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
 	<div>
 		{% include 'users/salespitch.html' %}
@@ -6,7 +7,7 @@
 			{% csrf_token %}
 			<fieldset>
 				<legend>Join Today</legend>
-				{{ form.as_p }}
+				{{ form|crispy }}
 			</fieldset>
 			<div>
 				<button type="submit">Sign Up</button>				

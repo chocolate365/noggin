@@ -4,28 +4,117 @@
 
 {% block content %}
 
-<div class="big-list-child">
-	<h4>List: <span class="detail">{{ list_item.name }}</span></h4>
-	<a href="{% url 'tasks-updatelist' list_item.id %}" class="add-something add-list fa-solid fa-pencil" ></a>
-	<a href="{% url 'tasks-deletelist' list_item.id %}" class="add-something delete-something fa-solid fa-trash" ></a>
-	<p>Tasks:</p>
-	<ul>
-		<li class="liststyle">
-			<a href="{% url 'new-task' %}" class="add-something add-task">Add a task</a>
-		</li>
-	</ul>
-	<br>
-	<ul>
-		{% for task in list_tasks %}
-		<li> 
-			<a href="{% url 'tasks-task' task.id %}">display order {{ task.display_order }}: {{ task.name }}</a>
-			{% if task.user_date %}, {{ task.user_date|date:'F j, Y' }}{% endif %}
-			{% if task.url %}, {{ task.url }}{% endif %}
-		</li>
-		{% empty %}
-		There are no tasks in this list yet.
-    	{% endfor %}
-	</ul>
+<div class="row">
+
+	<!-- display the list and all tasks for a selected list -->
+	<section class="col-md-8">
+
+		<!-- list heading -->
+		<div class="text-center mt-4">
+			<h4>
+				<!-- Add a new list -->
+				<a href="{% url 'new-task' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3" 
+				data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task" >
+				</a>
+				
+				{{ list_item.name }} 
+
+				<!-- Edit list -->
+				<a href="{% url 'tasks-updatelist' list_item.id %}"class="bi bi-pencil link-dark text-decoration-none mx-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit the list name" ></a>
+				
+				<!-- Delete list -->
+				<span data-bs-toggle="modal" data-bs-target="#del-list-modal">
+				<a href="#" class="bi bi-trash3 float-end" 
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete the entire list" >
+				</a>
+				</span>
+
+
+
+			</h4>
+		</div>
+
+		<!-- modal to confirm list deletion -->
+<div class="modal fade" id="del-list-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Are you sure you want to delete?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>This is irreversible!</p>
+
+			</div>
+			<div class="modal-footer">
+				<a href="{% url 'tasks-deletelist' list_item.id %}" class="btn btn-danger" role="button">Yes, delete</a>
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">No, do not
+					delete</button>
+			</div>
+		</div>
+	</div>
 </div>
 
-{% endblock %}
+		<!-- display all tasks for the selected list -->
+		<section>
+		
+			<ul class="list-group">
+				<div></div>
+				{% for task in list_tasks %}
+				<li class="list-group-item list-group-item-action py-1">
+					<a href="{% url 'tasks-task' task.id %}" class="link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="See task detail" >
+						 {{ task.name }}
+					</a>
+					{% if task.user_date %}, ({{ task.user_date|date:'F j, Y' }}){% endif %}
+
+
+					<span data-bs-toggle="modal" data-bs-target="#del-list-task-modal">
+					<a href="#" class="bi bi-trash3 link-primary float-end" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this task" ></a>
+					</span>
+
+
+					<!-- modal to confirm list task deletion -->
+<div class="modal fade" id="del-list-task-modal" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="modal-title">Are you sure you want to delete?</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<p>This is irreversible!</p>
+
+			</div>
+			<div class="modal-footer">
+				<a href="{% url 'tasks-deletetask' task.id %}" class="btn btn-danger" role="button">Yes, delete</a>
+				<button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">No, do not
+					delete</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+				</li>
+				{% empty %}
+				<li class="list-group-item">No tasks have been added to this list yet.</li>
+				{% endfor %}
+			</ul>
+
+		</section>
+	</section>
+	
+	<!-- display all lists -->
+	<section class="col-md-4">			
+		{% include 'partials/list-page.html' %}
+	</section>
+		
+</div>
+
+
+
+
+
+		{% endblock %}

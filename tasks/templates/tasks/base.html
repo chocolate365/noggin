@@ -14,11 +14,14 @@
 	<!-- Font Awesome -->
 	<script src="https://kit.fontawesome.com/9332c75493.js" crossorigin="anonymous"></script>
 
+	<!-- Bootstrap Icons -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    
 	<!-- Bootstrap -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 
 	<!-- my CSS -->
-	<link rel="stylesheet" type="text/css" href="{% static 'tasks/main.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'tasks/test.css' %}">
 	
 	<!-- HTMX and Sortable JS -->
 	<script src="https://unpkg.com/htmx.org@1.6.0"></script>
@@ -28,57 +31,96 @@
     <!-- favicon -->
     <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/>
 
+	<style>
+
+	body { 
+    	padding-top: 65px;
+	}
+
+	.link-dark:hover, .link-secondary:hover  {
+		font-weight: bold;
+	}
+
+	.bi-plus-lg:hover, .bi-search:hover {
+  		-webkit-text-stroke: 2px;
+	}
+
+	.link-primary:hover, .bi-arrow-down-up:hover, .bi-trash3:hover, .bi-pencil:hover {
+  		-webkit-text-stroke: 1px;
+	}
+
+	.list-group-item, .list-group-item:hover {
+		 z-index: auto;
+	}
+
+
+	</style>
+
 </head>
 
 <body hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
 	
 	<header>
-		<nav>
-		
-			<a href="{% url 'tasks-home' %}">yerNoggin</a>
+		<nav class="navbar navbar-expand-md navbar-light bg-warning fixed-top shadow">
+			<div class="container-lg">
+			<a class="navbar-brand link-dark" href="{% url 'tasks-home' %}" >yerNoggin</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="navbar-nav ms-auto">
 
 			{% if user.is_authenticated %}
 
-			<a href="{% url 'tasks-priority' %}">Priority</a>
-			<a href="{% url 'tasks-tasks' %}">Tasks</a>
-			<a href="{% url 'tasks-lists' %}">Lists</a>
-			<a href="{% url 'tasks-search' %}" 
-				class="fa-solid fa-magnifying-glass"></a> <!-- Search -->
-			<a href="{% url 'logout' %}" class="right-nav">Logout</a>
-			<a href="{% url 'profile' %}" class="right-nav">Profile ({{ user.username }})</a>
-			<a href="{% url 'tasks-about' %}" class="right-nav">About</a>
+			<!--<a href="{# url 'tasks-priority' #}" class="nav-item nav-link link-dark" >Priority</a>
+			<a href="{# url 'tasks-tasks' #}" class="nav-item nav-link link-dark" >Tasks</a>
+			<a href="{# url 'tasks-lists' #}" class="nav-item nav-link link-dark" >Lists</a>-->
+			<a href="{% url 'tasks-search' %}" class="nav-item nav-link bi bi-search" ></a>
+			<a href="{% url 'tasks-about' %}" class="nav-item nav-link link-dark" >About</a>
+			<a href="{% url 'profile' %}" class="nav-item nav-link link-dark" >Profile ({{ user.username }})</a>
+			<a href="{% url 'logout' %}" class="nav-item nav-link link-dark" >Logout</a>
 			
 			{% else %}
-
-			<a href="{% url 'register' %}" class="right-nav">Register</a>
-			<a href="{% url 'login' %}" class="right-nav">Login</a>
-			<a href="{% url 'tasks-about' %}" class="right-nav">About</a>
-
+			
+			<a href="{% url 'tasks-about' %}" class="nav-item nav-link link-dark" >About</a>
+			<a href="{% url 'login' %}" class="nav-item nav-link link-dark" >Login</a>
+			<a href="{% url 'register' %}" class="nav-item nav-link link-dark" >Register</a>
+			
 			{% endif %}
-		
+			</div>
+			</div>
+			</div>
 		</nav>
+
 	</header>
 
 	<main>
+		<section id="messages">
 		
-		{%  if messages %}
-			<div>
-
-			{% for message in messages %}
+			{%  if messages %}
 				<div>
-					{{ message }}
+
+				{% for message in messages %}
+					<div>
+						{{ message }}
+					</div>
+				{% endfor %}
+
 				</div>
-			{% endfor %}
+			{% endif %}
+		</section>
 
-			</div>
-		{% endif %}
-
+		<div class="container-md">
 		{% block content %}{% endblock %}
+		</div>
 		
 	</main>
 
-	<footer>
-		&copy; Copyright - <a href="https://twitter.com/youneedapplepie">
+	<footer class="bg-white text-center text-secondary mt-5">
+		&copy; Copyright - <a href="https://twitter.com/youneedapplepie" class="link-secondary">
 		Lugene Ganley</a>
 	</footer>
 
@@ -104,3 +146,5 @@
 
 </body>
 </html>
+
+

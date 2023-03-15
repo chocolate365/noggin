@@ -3,9 +3,11 @@
 {% extends 'tasks/base.html' %}
 
 {% block content %}
+
+<!-- search form -->
 <section class="searchform">
 	<h4>Search</h4>
-		<p>
+	<p>
 	<form action="">
 		<input type="text" name="searchNoggin" class="searchbtn" />
 		<button type="submit">Search</button>
@@ -14,36 +16,94 @@
 </section>
 
 
-{% if tasks or lists %}
+<div class="row">
+	<!-- display all tasks from search results -->
+
+	{% if tasks or lists %}
+
 	{% if tasks %}
-	<section class="task-child">
-		<h4>Tasks</h4>
-		{% include 'partials/task-page.html' %}
-	</section>
-	{% endif %}
+	<section class="col-md-8">
+		<div class="text-center">
+			<h4><a href="{% url 'new-task' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task" ></a> Tasks</h4>
+		</div>
 
-	{% if lists %}
-	<section class="list-child">			
-		<h4>Lists</h4>
-		<p>
-		<ul>
+		<ul class="list-group">
 
-			<!-- This part is replaced by partials/list-list.html if the lists are to be able to be drag-and-drop sorted, but since the search feature only displays a subset of lists, sorting screws them all up.  This just does a plain vanilla display of the lists.-->
-			{% for list in lists %}
-			<li>
-				<a href="{% url 'tasks-list' list.id %}">{{ list.name }}</a>
+			{% for task in tasks %}
+			<li class="list-group-item list-group-item-action py-1">
+
+				<a href="{% url 'tasks-task' task.id %}" class="link-secondary text-decoration-none"  data-bs-toggle="tooltip" data-bs-placement="top" title="See task detail" >
+					{{ task.name }}
+				</a>
+				{% if task.user_date %}, ({{ task.user_date|date:'F j, Y' }}){% endif %}
+
+				<!-- Delete task -->
+				
+				<a href="{% url 'tasks-deletetask' task.id %}" class="bi bi-trash3 link-primary float-end"  
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this task" ></a>
+				
+
 			</li>
+
+			
+
+			{% empty %}
+			<li class="list-group-item">Not found</li>
+			{% endfor %}
+
+		</ul>
+
+	</section>
+	{% endif %} 
+	
+	{% if lists %}
+	<section class="col-md-4">
+		<div class="text-center">
+			<h4><a href="{% url 'new-list' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new list" ></a> Lists</h4>
+		</div>
+
+		<ul class="list-group">
+
+			<!-- This part is replaced by partials/list-list.html if the lists
+				 are to be able to be drag-and-drop sorted, but since the
+				  search feature only displays a subset of lists, sorting
+				   screws them all up.  This just does a plain vanilla display
+				    of the lists.-->
+			{% for list in lists %}
+			<li class="list-group-item list-group-item-action py-1">
+				<a href="{% url 'tasks-list' list.id %}" class="link-secondary text-decoration-none"  data-bs-toggle="tooltip" data-bs-placement="top" title="See all tasks in this list" >
+					{{ list.name }} ({{ list.tasks.count }}) {{ list.id }} {{ list.display_order }} {{ list.pk }}
+				</a>
+
+				<!-- Delete list -->
+				
+					<a href="{% url 'tasks-deletelist' list.id %}" class="bi bi-trash3 link-primary float-end" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete this task" ></a>
+
+			</li>		
+
+
+			{% empty %}
+			<li class="list-group-item">Not found</li>
 			{% endfor %}
 
 
+
+
+
+
 		</ul>
-	</p>
+	</section>
+	
+	{% endif %}
+
+	{% else %}
+	<section class="col-md">
+		<p>{{ searchTerm }} not found</p>
 	</section>
 	{% endif %}
 
-{% else %}
-<p>Not found</p>
-{% endif %}
+
 
 	
+
 {% endblock %}

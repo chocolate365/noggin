@@ -38,9 +38,10 @@ def about(request):
 
 @login_required
 def list(request, list_id):
+	lists = List.objects.filter(owner=request.user)
 	list_item = List.objects.get(id=list_id)
 	list_tasks = list_item.tasks.order_by('display_order')
-	context = {'list_item': list_item, 'list_tasks': list_tasks}
+	context = {'lists': lists, 'list_item': list_item, 'list_tasks': list_tasks}
 	return render(request, 'tasks/list.html', context)
 
 
@@ -172,16 +173,7 @@ def deletelist(request, list_id):
 	list = get_object_or_404(List, pk=list_id, owner=request.user)
 	list.delete()
 	lists = List.objects.filter(owner=request.user)
-	#return redirect('/')
-	return render(request, 'tasks/lists.html', {'lists': lists})
-
-
-@login_required
-def priority(request):
-	priority_list = List.objects.get(name='Priority')
-	tasks = priority_list.tasks.order_by('display_order')
-	context = {'priority_list': priority_list, 'tasks': tasks}
-	return render(request, 'tasks/priority.html', context)
+	return redirect('/')
 
 
 def sort(request):

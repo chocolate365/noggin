@@ -1,23 +1,33 @@
 <!-- users/profile.html -->
 
 {% extends 'tasks/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-<div class="profile-child">
-	<h4>Profile</h4>
-	<p>
-		<img src="{{ user.profile.image.url }}">		
+
+<div class="row">
+	<div class="col-sm-3 mb-3 mb-sm-0"></div>
+	<div class="col-sm-6 mb-3 mb-sm-0">
+
+		<div class="text-center mt-4">
+			<h4>Profile</h4>
+		</div>
+		<p>
+			<img src="{{ user.profile.image.url }}" class="shadow p-3 my-3 bg-body rounded">
 		<h2>{{ user.username }}</h2>
+		</p>
 		<p>{{ user.email }}</p>
 
+		<p>
 		<form method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<fieldset>
 				<legend>Profile Info</legend>
-				{{ u_form.as_p}}
-				{{ p_form.as_p }}
+				{{ u_form|crispy}}
+				{{ p_form|crispy }}
 			</fieldset>
-			<button type="submit">Update</button>				
+			<button type="submit">Update</button>
 		</form>
-	</p>
+		</p>
+	</div>
 </div>
 {% endblock content %}

@@ -1,16 +1,13 @@
 <!-- partials/task-page.html -->
 
-	<p>
-		<ul>
-			<li class="liststyle taskbtn">
-				<a href="{% url 'new-task' %}" class="add-something add-task">Add a task</a>
-			</li>
-		</ul>
-		<ol>
-			
-			<section id="task-list">
-           		{% include 'partials/task-list.html' %}
-        	</section>
-			
-		</ol>
-	</p>
+<div class="text-center mt-4">
+		<h4>
+            <a href="{% url 'new-task' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3" 
+            data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task" >
+            </a> Tasks
+        </h4>
+</div>
+
+<section id="task-list">
+    {% include 'partials/task-list.html' %}
+</section>
