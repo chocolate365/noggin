@@ -17,15 +17,17 @@
 				data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task" >
 				</a>
 				
+				<!-- Display and edit list name -->
 				{{ list_item.name }} 
-
-				<!-- Edit list -->
 				<a href="{% url 'tasks-updatelist' list_item.id %}"class="bi bi-pencil link-dark text-decoration-none mx-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit the list name" ></a>
+				<!-- Print list -->
+				<a href="#" class="bi bi-printer link-dark text-decoration-none mx-2" data-bs-toggle="tooltip" data-bs-placement="top" title="Not enabled yet" ></a>
+				
 				
 				<!-- Delete list -->
 				<span data-bs-toggle="modal" data-bs-target="#del-list-modal">
 				<a href="#" class="bi bi-trash3 float-end" 
-					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete the entire list" >
+					data-bs-toggle="tooltip" data-bs-placement="top" title="Delete the list" >
 				</a>
 				</span>
 

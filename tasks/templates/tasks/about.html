@@ -5,17 +5,22 @@
 {% block content %}
 
 <div class="row">
-	<div class="col-sm-3 mb-3 mb-sm-0"></div>
-	<div class="col-sm-6 mb-3 mb-sm-0">
+	<div class="col-lg-3 mb-3 mb-lg-0"></div>
+	<div class="col-lg-6 mb-3 mb-lg-0">
+
+
 
 		<div class="text-center mt-4">
 			<h4>About</h4>
 		</div>
 
-		<p>
-			{% include 'tasks/salespitch.html' %}
-		</p>
+		<div class="card">
+			<div class="card-body">
 
+				<p>{% include 'tasks/salespitch.html' %}</p>
+
+			</div>
+		</div>
 	</div>
 </div>
 {% endblock content%}

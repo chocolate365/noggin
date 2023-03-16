@@ -13,7 +13,7 @@
 					<input type="hidden" name="list_order" value="{{ list.pk }}" />
 
 					<li class="list-group-item list-group-item-action py-1">
-						<span class="handle bi bi-arrow-down-up pe-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Drag to reorder" ></span>
+						<span class="handle bi bi-three-dots-vertical pe-3" data-bs-toggle="tooltip" data-bs-placement="top" title="Drag to reorder" ></span>
 						<a href="{% url 'tasks-list' list.id %}" class="link-secondary text-decoration-none" data-bs-toggle="tooltip" data-bs-placement="top" title="See all tasks in this list" > {{ list.name }} ({{ list.tasks.count }})
 						</a>
 						

@@ -12,9 +12,10 @@ class TaskForm(forms.ModelForm):
 		'lists': 'Lists', 
 		'user_date': 'Date',
 		'url': 'URL'
-
 		}
+
 		widgets = {
+		'name': forms.TextInput(attrs={'autofocus': True}),
 		'lists': forms.CheckboxSelectMultiple, 
 		'user_date': forms.DateInput,
 		'url': forms.URLInput
@@ -31,6 +32,11 @@ class ListForm(forms.ModelForm):
 	class Meta:
 		model = List
 		fields = ('name',)
+
+
+		widgets = {
+		'name': forms.TextInput(attrs={'autofocus': True}),
+		}
 
 	def __init__(self, user, *args, **kwargs):
 		super(ListForm, self).__init__(*args, **kwargs)
