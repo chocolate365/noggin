@@ -72,7 +72,7 @@
 			{% for list in lists %}
 			<li class="list-group-item list-group-item-action py-1">
 				<a href="{% url 'tasks-list' list.id %}" class="link-secondary text-decoration-none"  data-bs-toggle="tooltip" data-bs-placement="top" title="See all tasks in this list" >
-					{{ list.name }} ({{ list.tasks.count }}) {{ list.id }} {{ list.display_order }} {{ list.pk }}
+					{{ list.name }} ({{ list.tasks.count }})
 				</a>
 
 				<!-- Delete list -->

@@ -19,4 +19,5 @@ urlpatterns = [
     path('search/', views.search, name='tasks-search'),
     path('sort/', views.sort, name='sort'),
     path('sorttask/', views.sorttask, name='sorttask'),
+    path('sortmini/', views.sortmini, name='sortmini'),
 ]

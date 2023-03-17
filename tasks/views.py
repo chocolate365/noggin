@@ -200,4 +200,17 @@ def sorttask(request):
 
     return render(request, 'partials/task-list.html', {'tasks': tasks})
 
+def sortmini(request):
+    task_pks_order = request.POST.getlist('task_order')
+    print(task_pks_order)
+    tasks = []
+    for idx, task_pk in enumerate(task_pks_order, start=1):
+        usertask = Task.objects.get(pk=task_pk)
+        if idx != usertask.display_order:
+        	usertask.display_order = idx
+        	usertask.save()
+        tasks.append(usertask)
+
+    return render(request, 'partials/task-mini.html', {'list-tasks': list-tasks})
+
 
