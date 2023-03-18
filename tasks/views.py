@@ -81,6 +81,7 @@ def new_task(request):
 		form = TaskForm(request.user, request.POST)
 		if form.is_valid():
 			task = form.save(commit=False)
+			task.display_order = Task.objects.filter(owner=request.user).count() + 1
 			task.owner = request.user
 			form.save()
 			return redirect('tasks-task', task_id=task.id)
@@ -190,6 +191,7 @@ def sort(request):
 
 def sorttask(request):
     task_pks_order = request.POST.getlist('task_order')
+
     tasks = []
     for idx, task_pk in enumerate(task_pks_order, start=1):
         usertask = Task.objects.get(pk=task_pk)
@@ -201,16 +203,39 @@ def sorttask(request):
     return render(request, 'partials/task-list.html', {'tasks': tasks})
 
 def sortmini(request):
-    task_pks_order = request.POST.getlist('task_order')
-    print(task_pks_order)
-    tasks = []
-    for idx, task_pk in enumerate(task_pks_order, start=1):
-        usertask = Task.objects.get(pk=task_pk)
-        if idx != usertask.display_order:
-        	usertask.display_order = idx
-        	usertask.save()
-        tasks.append(usertask)
+	
+	# task_pks_order is a list of the sorted primary keys
+	task_pks_order = request.POST.getlist('task_order')
 
-    return render(request, 'partials/task-mini.html', {'list-tasks': list-tasks})
+	# initialize a list of updated sorted tasks to pass back to the template
+	list_tasks = []
+	# loop through the list of sorted primary keys, indexing from 1
+	for idx, task_pk in enumerate(task_pks_order, start=1):
+		# get the task that has that primary key
+		usertask = Task.objects.get(pk=task_pk)
+		# if the index is not equal to that task's display order
+			# set its display order to the index
+			# save it to the database
+		if idx != usertask.display_order:
+			usertask.display_order = idx
+			usertask.save()
+		
+		# add the database task to the list begin passed back
+		list_tasks.append(usertask)
 
+	# get all tasks from the updated table
+	all_tasks = Task.objects.filter(owner=request.user)
+	all_tasks_pks_order = [item.pk for item in all_tasks]
+	
+	# now straighten out the display order in the entire table after sorted tasks added
+	for idx, task_pk in enumerate(all_tasks_pks_order, start=1):
+		# get the task that has that primary key
+		usertask = Task.objects.get(pk=task_pk)
+		# if the index is not equal to that task's display order
+			# set its display order to the index
+			# save it to the database
+		if idx != usertask.display_order:
+			usertask.display_order = idx
+			usertask.save()
 
+	return render(request, 'partials/task-mini.html', {'list_tasks': list_tasks})

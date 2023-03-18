@@ -12,7 +12,7 @@
 		<!-- list heading -->
 		<div class="text-center mt-4">
 			<h4>
-				<!-- Add a new list -->
+				<!-- Add a new task -->
 				<a href="{% url 'new-task' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3"
 					data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task">
 				</a>
@@ -60,30 +60,12 @@
 		</div>
 
 
-
-
-
-
+		<!-- list all task for this list -->
 		<section id="sort-mini">
 			{% include 'partials/task-mini.html' %}
 		</section>
 
-
-		
-
-
 	</section>
-
-
-
-
-
-
-
-
-
-
-
 
 
 	<!-- display all lists -->
@@ -92,9 +74,5 @@
 	</section>
 
 </div>
-
-
-
-
 
 {% endblock %}
