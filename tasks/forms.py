@@ -2,6 +2,9 @@ from django import forms
 from django.contrib.auth.models import User
 from .models import List, Task
 
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout, Fieldset, Submit
+
 class TaskForm(forms.ModelForm):
 
 	class Meta:
@@ -26,6 +29,10 @@ class TaskForm(forms.ModelForm):
 		super(TaskForm, self).__init__(*args, **kwargs)
 		self.fields['lists'].queryset = List.objects.filter(owner=user)
 
+		self.helper = FormHelper(self)
+		self.helper.form_id = 'id-taskForm'
+		
+		
 
 class ListForm(forms.ModelForm):
 

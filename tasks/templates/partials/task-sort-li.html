@@ -5,6 +5,11 @@
         <!-- handle for dragging -->
         <span class="handle bi bi-three-dots-vertical pe-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Drag to reorder" ></span>
 
+        <!-- pencil for editing task detail -->
+        <a href="{% url 'tasks-updatetask' task.id %}"
+					class="bi bi-pencil link-dark text-decoration-none me-2" data-bs-toggle="tooltip"
+					data-bs-placement="top" title="Edit task detail"></a>
+
         <!-- display/edit task name -->
         <a href="{% url 'tasks-task' task.id %}" class="link-secondary text-decoration-none"  data-bs-toggle="tooltip" data-bs-placement="top" title="See task detail" > {{ task.name }}</a>
         

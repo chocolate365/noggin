@@ -7,7 +7,7 @@
 <div class="row">
 
 	<!-- display the list and all tasks for a selected list -->
-	<section class="col-md-8">
+	<section class="col-lg-8">
 
 		<!-- list heading -->
 		<div class="text-center mt-4">
@@ -19,20 +19,22 @@
 
 				<!-- Display and edit list name -->
 				{{ list_item.name }} ({{ list_item.tasks.count }})
+
+				{% if list_item.name != 'Priority' %}
 				<a href="{% url 'tasks-updatelist' list_item.id %}"
 					class="bi bi-pencil link-dark text-decoration-none mx-2" data-bs-toggle="tooltip"
 					data-bs-placement="top" title="Edit the list name"></a>
-				<!-- Print list -->
-				<a href="#" class="bi bi-printer link-dark text-decoration-none mx-2" data-bs-toggle="tooltip"
-					data-bs-placement="top" title="Not enabled yet"></a>
+				{% endif %}
 
 
+				{% if list_item.name != 'Priority' %}
 				<!-- Delete list -->
 				<span data-bs-toggle="modal" data-bs-target="#del-list-modal">
 					<a href="#" class="bi bi-trash3 float-end" data-bs-toggle="tooltip" data-bs-placement="top"
 						title="Delete the list">
 					</a>
 				</span>
+				{% endif %}
 			</h4>
 		</div>
 
@@ -69,7 +71,7 @@
 
 
 	<!-- display all lists -->
-	<section class="col-md-4">
+	<section class="col-lg-4">
 		{% include 'partials/list-page.html' %}
 	</section>
 

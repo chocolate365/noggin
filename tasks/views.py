@@ -9,10 +9,15 @@ from django.contrib.auth.decorators import login_required
 
 @login_required
 def home(request):
-	context = {
-	'lists': List.objects.filter(owner=request.user),
-	'tasks': Task.objects.filter(owner=request.user),
-	}
+	lists = List.objects.filter(owner=request.user)
+	priority_list = List.objects.filter(owner=request.user, name='Priority').first()
+	print(priority_list)
+	if priority_list:
+		tasks = priority_list.tasks.order_by('display_order')
+	else:
+		tasks = Task.objects.filter(owner=request.user)
+	
+	context = {'lists': lists, 'tasks': tasks}
 	return render(request, 'tasks/home.html', context)
 
 @login_required
@@ -172,7 +177,10 @@ def updatelist(request, list_id):
 @login_required
 def deletelist(request, list_id):
 	list = get_object_or_404(List, pk=list_id, owner=request.user)
-	list.delete()
+	if list.name != 'Priority':
+		list.delete()
+	else:
+		print('Priority list cannot be deleted')
 	lists = List.objects.filter(owner=request.user)
 	return redirect('/')
 

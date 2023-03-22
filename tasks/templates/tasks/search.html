@@ -22,7 +22,7 @@
 	{% if tasks or lists %}
 
 	{% if tasks %}
-	<section class="col-md-8">
+	<section class="col-lg-8">
 		<div class="text-center">
 			<h4><a href="{% url 'new-task' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new task" ></a> Tasks</h4>
 		</div>
@@ -34,6 +34,12 @@
 				<input type="hidden" name="task_order" value="{{ task.pk }}" />
 			
 				<li class="list-group-item list-group-item-action py-1"> <!---->
+
+					<!-- pencil for editing task detail -->
+					<a href="{% url 'tasks-updatetask' task.id %}"
+					class="bi bi-pencil link-dark text-decoration-none me-2" data-bs-toggle="tooltip"
+					data-bs-placement="top" title="Edit task detail"></a>
+					
 					<!-- display/edit task name -->
 					<a href="{% url 'tasks-task' task.id %}" class="link-secondary text-decoration-none"  data-bs-toggle="tooltip" data-bs-placement="top" title="See task detail" > {{ task.name }}</a>
 					
@@ -58,7 +64,7 @@
 	{% endif %} 
 	
 	{% if lists %}
-	<section class="col-md-4">
+	<section class="col-lg-4">
 		<div class="text-center">
 			<h4><a href="{% url 'new-list' %}" class="bi bi-plus-lg link-dark text-decoration-none float-start mx-3"  data-bs-toggle="tooltip" data-bs-placement="top" title="Add a new list" ></a> Lists</h4>
 		</div>
@@ -98,13 +104,12 @@
 	{% endif %}
 
 	{% else %}
-	<section class="col-md">
+	<section class="col-lg">
 		<p>{{ searchTerm }} not found</p>
 	</section>
 	{% endif %}
 
 
 
-	
 
 {% endblock %}
